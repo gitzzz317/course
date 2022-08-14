@@ -22,8 +22,8 @@
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/courseimooc"
-                        userId="courseimooc"
-                        password="courseimooc">
+                        userId="root"
+                        password="password">
         </jdbcConnection>
 
         <!-- domain类的位置 -->
@@ -39,7 +39,7 @@
                              targetPackage="com.course.server.mapper"
                              type="XMLMAPPER" />
 
-<!--        <table tableName="test" domainObjectName="Test"/>-->
+        <table tableName="test" domainObjectName="Test"/>
 <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
 <!--        <table tableName="section" domainObjectName="Section"/>-->
 <!--        <table tableName="course" domainObjectName="Course"/>-->
@@ -54,6 +54,6 @@
 <!--        <table tableName="role_user" domainObjectName="RoleUser"/>-->
 <!--        <table tableName="member" domainObjectName="Member"/>-->
 <!--        <table tableName="sms" domainObjectName="Sms"/>-->
-        <table tableName="member_course" domainObjectName="MemberCourse"/>
+<!--        <table tableName="member_course" domainObjectName="MemberCourse"/>-->
     </context>
 </generatorConfiguration>
