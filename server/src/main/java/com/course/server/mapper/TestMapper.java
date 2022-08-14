@@ -4,7 +4,9 @@ import com.course.server.domain.Test;
 import com.course.server.domain.TestExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TestMapper {
     long countByExample(TestExample example);
 

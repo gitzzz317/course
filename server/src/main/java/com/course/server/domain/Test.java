@@ -1,5 +1,8 @@
 package com.course.server.domain;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class Test {
     private String id;
 
