@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 import Login from "./views/login.vue"
+import Admin from "./views/admin.vue"
 
 
 Vue.use(Router);
@@ -8,8 +9,7 @@ Vue.use(Router);
 export default new Router({
     mode: "history",
     base: process.env.BASE_URL,
-    routes: [
-        {
+    routes: [{
         path: "*",
         redirect: "/login",
     }, {
@@ -18,6 +18,8 @@ export default new Router({
     }, {
         path: "/login",
         component: Login
-    }
-    ]
+    }, {
+        path: "/admin",
+        component: Admin
+    }]
 })
