@@ -1,6 +1,5 @@
 <template>
     <!-- PAGE CONTENT BEGINS -->
-
     <table id="simple-table" class="table  table-bordered table-hover">
         <thead>
         <tr>
@@ -972,7 +971,6 @@
         </tr>
         </tbody>
     </table>
-
 </template>
 
 <script>
@@ -992,7 +990,7 @@
                     console.log(response);
                 })
             }
-            }
+        }
     }
 </script>
 
