@@ -21,9 +21,4 @@ public class ChapterController {
     public List<ChapterDto> list(){
         return chapterService.list();
     }
-
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello!";
-    }
 }

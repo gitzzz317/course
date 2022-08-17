@@ -979,9 +979,20 @@
     export default {
         name: "chapter",
         mounted: function() {
-            //this.$parent.activeSidebar("business-chapter-sidebar");
-            //alert("welcome mounted")
+            this.$parent.activeSidebar("business-chapter-sidebar");
+            this.list();
         },
+        methods: {
+            /**
+             * 列表查询
+             */
+            list: function () {
+                let _this = this;
+                _this.$ajax.get('http://127.0.0.1:9002/business/admin/chapter/list').then((response) => {
+                    console.log(response);
+                })
+            }
+            }
     }
 </script>
 
