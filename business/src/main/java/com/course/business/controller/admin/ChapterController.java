@@ -1,12 +1,14 @@
 package com.course.business.controller.admin;
 
+import com.course.business.BusinessApplication;
 import com.course.server.dto.ChapterDto;
+import com.course.server.dto.PageDto;
 import com.course.server.service.ChapterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,11 +17,14 @@ import java.util.List;
 @RequestMapping("/admin/chapter")
 public class ChapterController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
+
     @Autowired
     private ChapterService chapterService;
     
     @RequestMapping("/list")
-    public List<ChapterDto> list(){
-        return chapterService.list();
+    public PageDto list(@RequestBody PageDto pageDto){
+        chapterService.list(pageDto);
+        return pageDto;
     }
 }
