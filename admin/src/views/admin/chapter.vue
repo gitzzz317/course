@@ -979,9 +979,9 @@
     export default {
         name: "chapter",
         mounted: function() {
-            this.$parent.activeSidebar("business-chapter-sidebar");
-            alert("welcome")
-        }
+            //this.$parent.activeSidebar("business-chapter-sidebar");
+            //alert("welcome mounted")
+        },
     }
 </script>
 

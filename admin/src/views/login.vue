@@ -77,7 +77,7 @@
 
 export default {
   name: 'login',
-  mounted() {
+  mounted: function () {
     $("body").removeClass("no-skin");
     $('body').attr('class', 'login-layout light-login');
   },
