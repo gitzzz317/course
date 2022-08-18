@@ -26,8 +26,10 @@ public class ChapterController {
     @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto ){
         LOG.info("pageDto:{}", pageDto);
-        ResponseDto responseDto = new ResponseDto();
+
         chapterService.list(pageDto);
+
+        ResponseDto responseDto = new ResponseDto();
         responseDto.setContent(pageDto);
         return responseDto;
     }
@@ -35,7 +37,7 @@ public class ChapterController {
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto ){
         LOG.info("ChapterDto:{}", chapterDto);
-        chapterDto.setId(UuidUtil.getShortUuid());
+
         chapterService.save(chapterDto);
 
         ResponseDto responseDto = new ResponseDto();
