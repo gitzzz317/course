@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class ChapterService {
 
     /**
      * 列表查询
+     * @param pageDto
      */
     public void list(PageDto pageDto){
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
@@ -41,7 +41,8 @@ public class ChapterService {
     }
 
     /**
-     * 新增修改
+     * 保存，id有值时更新，无值时新增
+     * @param chapterDto
      */
     public void save(ChapterDto chapterDto){
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
@@ -71,6 +72,5 @@ public class ChapterService {
     public void delete(String id){
         chapterMapper.deleteByPrimaryKey(id);
     }
-
 
 }
