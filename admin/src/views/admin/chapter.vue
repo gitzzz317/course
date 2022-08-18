@@ -98,20 +98,20 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">名称</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" placeholder="名称">
+                                    <input v-model="chapter.name" class="form-control" placeholder="名称">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">课程</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" placeholder="课程ID">
+                                    <input v-model="chapter.courseId" class="form-control" placeholder="课程ID">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">保存</button>
+                        <button @click="save()" type="button" class="btn btn-primary">保存</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -128,6 +128,7 @@
         components: {Pagination},
         data: function(){
             return {
+                chapter: {},
                 chapters: []
             }
         },
@@ -161,6 +162,15 @@
                     let resp = response.data;
                     _this.chapters = resp.list;
                     _this.$refs.pagination.render(page, resp.total);
+                })
+            },
+            /**
+             * 新增
+             */
+            save() {
+                let _this = this;
+                _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save',_this.chapter).then((response) => {
+
                 })
             }
         }
