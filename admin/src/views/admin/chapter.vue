@@ -160,8 +160,8 @@
                         size:_this.$refs.pagination.size
                 }).then((response) => {
                     let resp = response.data;
-                    _this.chapters = resp.list;
-                    _this.$refs.pagination.render(page, resp.total);
+                    _this.chapters = resp.content.list;
+                    _this.$refs.pagination.render(page, resp.content.total);
                 })
             },
             /**
@@ -170,7 +170,11 @@
             save() {
                 let _this = this;
                 _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save',_this.chapter).then((response) => {
-
+                    let resp = response.data;
+                    if(resp.success){
+                        $("#form-modal").modal("hide");
+                        _this.list(1);
+                    }
                 })
             }
         }
