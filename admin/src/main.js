@@ -24,3 +24,5 @@ new Vue({
     render: h => h(App),
 }).$mount('#app');
 
+console.log(process.env.VUE_APP_SERVER);
+
