@@ -1,11 +1,12 @@
 <template>
     <div>
         <p>
-            <button @click="list()" class="btn btn-white btn-default btn-round">
+            <button @click="list(1)" class="btn btn-white btn-default btn-round">
                 <i class="ace-icon fa fa-times red2"></i>
                 刷新
             </button>
         </p>
+        <pagination ref="pagination" v-bind:list="list"></pagination>
         <!-- PAGE CONTENT BEGINS -->
         <table id="simple-table" class="table  table-bordered table-hover">
             <thead>
@@ -84,29 +85,37 @@
 </template>
 
 <script>
+    import Pagination from "../../components/pagination";
     export default {
         name: "chapter",
+        components: {Pagination},
         data: function(){
             return {
                 chapters: []
             }
         },
         mounted: function() {
-            this.$parent.activeSidebar("business-chapter-sidebar");
-            this.list();
+            let _this = this;
+            _this.$refs.pagination.size = 5;
+            this.list(1);
+
+            // sidebar激活样式方法一
+            _this.$parent.activeSidebar("business-chapter-sidebar");
+
         },
         methods: {
             /**
              * 列表查询
              */
-            list: function () {
+            list: function (page) {
                 let _this = this;
                 _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list',{
-                        page: 1,
-                        size: 1
+                        page: page,
+                        size:_this.$refs.pagination.size
                 }).then((response) => {
-                    console.log(response);
-                    _this.chapters = response.data.list;
+                    let resp = response.data;
+                    _this.chapters = resp.list;
+                    _this.$refs.pagination.render(page, resp.total);
                 })
             }
         }
