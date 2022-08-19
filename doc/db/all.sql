@@ -75,7 +75,7 @@ create table `category` (
   `name` varchar(50) not null comment '名称',
   `sort` int comment '顺序',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='分类';
+) engine=innodb default charset=utf8 comment='分类';
 
 insert into `category` (id, parent, name, sort) values ('00000100', '00000000', '前端技术', 100);
 insert into `category` (id, parent, name, sort) values ('00000101', '00000100', 'html/css', 101);
