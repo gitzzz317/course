@@ -499,24 +499,24 @@
             $("body").attr("class", "no-skin");
             _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
         },
-        // watch: {
-        //     $route: {
-        //         handler:function(val, oldVal){
-        //             // sidebar激活样式方法二
-        //             console.log("---->页面跳转：", val, oldVal);
-        //             let _this = this;
-        //
-        //             if (!_this.hasResourceRouter(val.name)) {
-        //                 _this.$router.push("/login");
-        //                 return;
-        //             }
-        //
-        //             _this.$nextTick(function(){  //页面加载完成后执行
-        //                 _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
-        //             })
-        //         }
-        //     }
-        // },
+        watch: {
+            $route: {
+                handler:function(val, oldVal){
+                    // sidebar激活样式方法二
+                    console.log("---->页面跳转：", val, oldVal);
+                    let _this = this;
+
+                    if (!_this.hasResourceRouter(val.name)) {
+                        _this.$router.push("/login");
+                        return;
+                    }
+
+                    _this.$nextTick(function(){  //页面加载完成后执行
+                        _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
+                    })
+                }
+            }
+        },
         methods: {
             /**
               * 菜单激活样式，id是当前点击的菜单的id
