@@ -77,51 +77,6 @@
       </div>
     </div>
 
-<!--    <table id="simple-table" class="table  table-bordered table-hover">-->
-<!--      <thead>-->
-<!--      <tr>-->
-<!--        <th>id</th>-->
-<!--        <th>名称</th>-->
-<!--        <th>概述</th>-->
-<!--        <th>时长</th>-->
-<!--        <th>价格（元）</th>-->
-<!--        <th>封面</th>-->
-<!--        <th>级别</th>-->
-<!--        <th>收费</th>-->
-<!--        <th>状态</th>-->
-<!--        <th>报名数</th>-->
-<!--        <th>顺序</th>-->
-<!--        <th>操作</th>-->
-<!--      </tr>-->
-<!--      </thead>-->
-
-<!--      <tbody>-->
-<!--      <tr v-for="course in courses">-->
-<!--        <td>{{course.id}}</td>-->
-<!--        <td>{{course.name}}</td>-->
-<!--        <td>{{course.summary}}</td>-->
-<!--        <td>{{course.time}}</td>-->
-<!--        <td>{{course.price}}</td>-->
-<!--        <td>{{course.image}}</td>-->
-<!--        <td>{{COURSE_LEVEL | optionKV(course.level)}}</td>-->
-<!--        <td>{{COURSE_CHARGE | optionKV(course.charge)}}</td>-->
-<!--        <td>{{COURSE_STATUS | optionKV(course.status)}}</td>-->
-<!--        <td>{{course.enroll}}</td>-->
-<!--        <td>{{course.sort}}</td>-->
-<!--      <td>-->
-<!--        <div class="hidden-sm hidden-xs btn-group">-->
-<!--          <button v-on:click="edit(course)" class="btn btn-xs btn-info">-->
-<!--            <i class="ace-icon fa fa-pencil bigger-120"></i>-->
-<!--          </button>-->
-<!--          <button v-on:click="del(course.id)" class="btn btn-xs btn-danger">-->
-<!--            <i class="ace-icon fa fa-trash-o bigger-120"></i>-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-<!--    </table>-->
-
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -202,7 +157,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">顺序</label>
                 <div class="col-sm-10">
-                  <input v-model="course.sort" class="form-control">
+                  <input v-model="course.sort" class="form-control" disabled>
                 </div>
               </div>
             </form>
@@ -214,6 +169,48 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <div id="course-sort-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">排序</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-lg-3">
+                  当前排序
+                </label>
+                <div class="col-lg-9">
+                  <input class="form-control" v-model="sort.oldSort" name="oldSort" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-lg-3">
+                  新排序
+                </label>
+                <div class="col-lg-9">
+                  <input class="form-control" v-model="sort.newSort" name="newSort">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
+              <i class="ace-icon fa fa-times"></i>
+              取消
+            </button>
+            <button type="button" class="btn btn-white btn-info btn-round" v-on:click="updateSort()">
+              <i class="ace-icon fa fa-plus blue"></i>
+              更新排序
+            </button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
   </div>
 </template>
 
@@ -231,6 +228,12 @@
         COURSE_STATUS: COURSE_STATUS,
         categorys: [],
         tree: {},
+        saveContentLabel: "",
+        sort: {
+          id: "",
+          oldSort: 0,
+          newSort: 0
+        },
       }
     },
     mounted: function() {
@@ -398,6 +401,38 @@
             _this.tree.checkNode(node, true);
           }
         })
+      },
+      openSortModal(course) {
+        let _this = this;
+        _this.sort = {
+          id: course.id,
+          oldSort: course.sort,
+          newSort: course.sort
+        };
+        $("#course-sort-modal").modal("show");
+      },
+
+      /**
+       * 排序
+       */
+      updateSort() {
+        let _this = this;
+        if (_this.sort.newSort === _this.sort.oldSort) {
+          Toast.warning("排序没有变化");
+          return;
+        }
+        Loading.show();
+        _this.$ajax.post(process.env.VUE_APP_SERVER + "/business/admin/course/sort", _this.sort).then((res) => {
+          let response = res.data;
+
+          if (response.success) {
+            Toast.success("更新排序成功");
+            $("#course-sort-modal").modal("hide");
+            _this.list(1);
+          } else {
+            Toast.error("更新排序失败");
+          }
+        });
       },
     }
   }

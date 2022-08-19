@@ -422,22 +422,22 @@
 
                                 <b class="arrow"></b>
                             </li>
-                            <li class="active" id="business-chapter-sidebar">
-                                <router-link to="/business/chapter">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    大章管理
-                                </router-link>
+<!--                            <li class="active" id="business-chapter-sidebar">-->
+<!--                                <router-link to="/business/chapter">-->
+<!--                                    <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                                    大章管理-->
+<!--                                </router-link>-->
 
-                                <b class="arrow"></b>
-                            </li>
-                            <li class="active" id="business-section-sidebar">
-                                <router-link to="/business/section">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    小节管理
-                                </router-link>
+<!--                                <b class="arrow"></b>-->
+<!--                            </li>-->
+<!--                            <li class="active" id="business-section-sidebar">-->
+<!--                                <router-link to="/business/section">-->
+<!--                                    <i class="menu-icon fa fa-caret-right"></i>-->
+<!--                                    小节管理-->
+<!--                                </router-link>-->
 
-                                <b class="arrow"></b>
-                            </li>
+<!--                                <b class="arrow"></b>-->
+<!--                            </li>-->
                         </ul>
                     </li>
                 </ul><!-- /.nav-list -->
@@ -520,6 +520,7 @@
                     }
 
                     _this.$nextTick(function(){  //页面加载完成后执行
+                        console.log("yeyeye")
                         _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
                     })
                 }
@@ -531,6 +532,7 @@
               * @param id
               */
             activeSidebar: function (id) {
+                console.log("hhhh");
                 // 兄弟菜单去掉active样式，自身增加active样式
                 $("#" + id).siblings().removeClass("active");
                 $("#" + id).siblings().find("li").removeClass("active");
