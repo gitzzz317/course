@@ -23,6 +23,8 @@ public class SectionService {
     @Resource
     private SectionMapper sectionMapper;
 
+    @Resource
+    private CourseService courseService;
     /**
      * 列表查询
      */
@@ -49,11 +51,12 @@ public class SectionService {
      */
     public void save(SectionDto sectionDto) {
         Section section = CopyUtil.copy(sectionDto, Section.class);
-        if (StringUtils.isEmpty(sectionDto.getId())) {
+        if (!StringUtils.hasText(sectionDto.getId())) {
             this.insert(section);
         } else {
             this.update(section);
         }
+        courseService.updateTime(sectionDto.getCourseId());
     }
 
     /**
