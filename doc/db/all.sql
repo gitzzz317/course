@@ -163,7 +163,7 @@ create table `teacher` (
   `motto` varchar(50) comment '座右铭',
   `intro` varchar(500) comment '简介',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='讲师';
+) engine=innodb default charset=utf8 comment='讲师';
 
 -- 文件
 drop table if exists `file`;
