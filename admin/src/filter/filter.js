@@ -10,9 +10,7 @@ let optionKV = (object, key) =>  {
     } else {
         let result = "";
         for(let enums in object){
-            console.log(object[enums]["value"]);
             if (key === object[enums]["key"]) {
-                console.log(object[enums]["value"]);
                 result = object[enums]["value"];
             }
         }
@@ -33,10 +31,13 @@ let optionKVArray = (list, key) =>  {
         let result = "";
         for (let i = 0; i < list.length; i++) {
             if (key === list[i]["key"]) {
-
                 result = list[i]["value"];
             }
         }
         return result;
     }
 };
+
+export default {
+    optionKV,
+}
