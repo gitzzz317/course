@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <p>
           <button v-on:click="add1()" class="btn btn-white btn-default btn-round">
             <i class="ace-icon fa fa-edit"></i>
@@ -43,7 +43,7 @@
 
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-8">
         <p>
           <button v-on:click="add2()" class="btn btn-white btn-default btn-round">
             <i class="ace-icon fa fa-edit"></i>
@@ -80,53 +80,6 @@
 
       </div>
     </div>
-
-
-
-    <p>
-      <button v-on:click="add()" class="btn btn-white btn-default btn-round">
-        <i class="ace-icon fa fa-edit"></i>
-        新增
-      </button>
-      &nbsp;
-      <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
-        <i class="ace-icon fa fa-refresh"></i>
-        刷新
-      </button>
-    </p>
-
-    <pagination ref="pagination" v-bind:list="list" v-bind:itemCount="8"></pagination>
-
-    <table id="simple-table" class="table  table-bordered table-hover">
-      <thead>
-      <tr>
-        <th>id</th>
-        <th>父id</th>
-        <th>名称</th>
-        <th>顺序</th>
-        <th>操作</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr v-for="category in categorys">
-        <td>{{category.id}}</td>
-        <td>{{category.parent}}</td>
-        <td>{{category.name}}</td>
-        <td>{{category.sort}}</td>
-      <td>
-        <div class="hidden-sm hidden-xs btn-group">
-          <button v-on:click="edit(category)" class="btn btn-xs btn-info">
-            <i class="ace-icon fa fa-pencil bigger-120"></i>
-          </button>
-          <button v-on:click="del(category.id)" class="btn btn-xs btn-danger">
-            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-          </button>
-        </div>
-      </td>
-      </tr>
-      </tbody>
-    </table>
 
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
