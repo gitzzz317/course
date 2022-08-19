@@ -40,12 +40,15 @@
                 <td>{{chapter.name}}</td>
                 <td>{{chapter.courseId}}</td>
                 <td>
-                    <div class="btn-group">
-                        <button @click="edit(chapter)" class="btn btn-xs btn-info">
-                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                        </button>
-                        <button @click="del(chapter.id)" class="btn btn-xs btn-danger">
-                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                    <div class="hidden-sm hidden-xs btn-group">
+                        <button v-on:click="toSection(chapter)" class="btn btn-white btn-xs btn-info btn-round">
+                            小节
+                        </button>&nbsp;
+                        <button v-on:click="edit(chapter)" class="btn btn-white btn-xs btn-info btn-round">
+                            编辑
+                        </button>&nbsp;
+                        <button v-on:click="del(chapter.id)" class="btn btn-white btn-xs btn-warning btn-round">
+                            删除
                         </button>
                     </div>
                 </td>
@@ -109,12 +112,12 @@
             }
             _this.course = course;
             this.list(1);
-
             // sidebar激活样式方法一
-            // _this.$parent.activeSidebar("business-chapter-sidebar");
+            _this.$parent.activeSidebar("business-chapter-sidebar");
 
         },
         methods: {
+
             /**
              * 点击【新增】
              */
@@ -123,6 +126,7 @@
                 _this.chapter = {};
                 $("#form-modal").modal("show");
             },
+
             /**
              * 点击【编辑】
              */
@@ -147,6 +151,7 @@
                     _this.$refs.pagination.render(page, resp.content.total);
                 })
             },
+
             /**
              * 保存
              */
@@ -173,6 +178,7 @@
                     }
                 })
             },
+
             /**
              * 删除
              */
@@ -190,6 +196,15 @@
                     })
                 });
             },
+
+            /**
+             * 点击【小节】
+             */
+            toSection(chapter) {
+                let _this = this;
+                SessionStorage.set(SESSION_KEY_CHAPTER, chapter);
+                _this.$router.push("/business/section");
+            }
         }
     }
 </script>
