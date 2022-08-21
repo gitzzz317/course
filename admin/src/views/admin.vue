@@ -396,7 +396,8 @@
                     </li>
 
                     <li class="active open">
-                        <a href="#" class="dropdown-toggle">
+                        <a href="" class="dropdown-toggle">
+
                             <i class="menu-icon fa fa-list"></i>
                             <span class="menu-text"> 业务管理 </span>
 
@@ -411,7 +412,6 @@
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     分类管理
                                 </router-link>
-
                                 <b class="arrow"></b>
                             </li>
                             <li class="active" id="business-course-sidebar">
@@ -419,7 +419,6 @@
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     课程管理
                                 </router-link>
-
                                 <b class="arrow"></b>
                             </li>
                             <li class="active" id="business-teacher-sidebar">
@@ -427,25 +426,8 @@
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     讲师管理
                                 </router-link>
-
                                 <b class="arrow"></b>
                             </li>
-<!--                            <li class="active" id="business-chapter-sidebar">-->
-<!--                                <router-link to="/business/chapter">-->
-<!--                                    <i class="menu-icon fa fa-caret-right"></i>-->
-<!--                                    大章管理-->
-<!--                                </router-link>-->
-
-<!--                                <b class="arrow"></b>-->
-<!--                            </li>-->
-<!--                            <li class="active" id="business-section-sidebar">-->
-<!--                                <router-link to="/business/section">-->
-<!--                                    <i class="menu-icon fa fa-caret-right"></i>-->
-<!--                                    小节管理-->
-<!--                                </router-link>-->
-
-<!--                                <b class="arrow"></b>-->
-<!--                            </li>-->
                         </ul>
                     </li>
                 </ul><!-- /.nav-list -->
@@ -522,13 +504,12 @@
                     console.log("---->页面跳转：", val, oldVal);
                     let _this = this;
 
-                    if (!_this.hasResourceRouter(val.name)) {
-                        _this.$router.push("/login");
-                        return;
-                    }
+                    // if (!_this.hasResourceRouter(val.name)) {
+                    //     _this.$router.push("/login");
+                    //     return;
+                    // }
 
                     _this.$nextTick(function(){  //页面加载完成后执行
-                        console.log("yeyeye")
                         _this.activeSidebar(_this.$route.name.replace("/", "-") + "-sidebar");
                     })
                 }
@@ -540,7 +521,6 @@
               * @param id
               */
             activeSidebar: function (id) {
-                console.log("hhhh");
                 // 兄弟菜单去掉active样式，自身增加active样式
                 $("#" + id).siblings().removeClass("active");
                 $("#" + id).siblings().find("li").removeClass("active");
