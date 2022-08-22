@@ -84,7 +84,8 @@
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">头像</label>
-<!--                <div class="col-sm-10">-->
+                <div class="col-sm-10">
+                  <input type="file" v-on:change="uploadImage()" id="file-upload-input">
 <!--                  <big-file v-bind:input-id="'image-upload'"-->
 <!--                            v-bind:text="'上传头像'"-->
 <!--                            v-bind:suffixs="['jpg', 'jpeg', 'png']"-->
@@ -95,7 +96,7 @@
 <!--                      <img v-bind:src="teacher.image" class="img-responsive">-->
 <!--                    </div>-->
 <!--                  </div>-->
-<!--                </div>-->
+                </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">职位</label>
@@ -232,6 +233,19 @@
             }
           })
         });
+      },
+
+      uploadImage () {
+        let _this = this;
+        let fromData = new window.FormData();
+
+        fromData.append('file',document.querySelector('#file-upload-input').files[0]);
+
+        Loading.show();
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload/',fromData).then((response)=>{
+          Loading.hide();
+          let resp = response.data;
+        })
       }
     }
   }
