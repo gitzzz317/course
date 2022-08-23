@@ -45,7 +45,7 @@ public class UploadController {
 
         ResponseDto responseDto = new ResponseDto();
 
-        responseDto.setContent(FILE_DOMAIN + "file/f/teacher/" + key + "-" + fileName);
+        responseDto.setContent(FILE_DOMAIN + "teacher/" + key + "-" + fileName);
         return responseDto;
     }
 }
