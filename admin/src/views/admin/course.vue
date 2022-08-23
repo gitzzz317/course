@@ -369,6 +369,15 @@
         _this.$router.push("/business/chapter");
       },
 
+      /**
+       * 点击【内容】
+       */
+      toContent(course) {
+        let _this = this;
+        SessionStorage.set(SESSION_KEY_COURSE, course);
+        _this.$router.push("/business/content");
+      },
+
       allCategory() {
         let _this = this;
         Loading.show();

@@ -150,7 +150,7 @@ create table `course_content_file` (
   `name` varchar(100) comment '文件名',
   `size` int comment '大小|字节b',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='课程内容文件';
+) engine=innodb default charset=utf8 comment='课程内容文件';
 
 -- 讲师
 drop table if exists `teacher`;
