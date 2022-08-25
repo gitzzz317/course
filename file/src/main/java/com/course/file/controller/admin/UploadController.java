@@ -4,7 +4,6 @@ import com.course.server.dto.FileDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.FileUseEnum;
 import com.course.server.service.FileService;
-import com.course.server.util.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,7 +41,8 @@ public class UploadController {
                               Integer size,
                               Integer shardIndex,
                               Integer shardSize,
-                              Integer shardTotal
+                              Integer shardTotal,
+                              String key
                               ) throws IOException {
 
         LOG.info("文件上传开始");
@@ -57,7 +57,6 @@ public class UploadController {
             fullDir.mkdir();
         }
 
-        String key = UuidUtil.getShortUuid();
         String path = dir + File.separator + key + "." + suffix;
 
         String fullPath = FILE_PATH + path;
