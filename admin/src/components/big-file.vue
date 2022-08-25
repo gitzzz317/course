@@ -80,7 +80,7 @@
         // let shardSize = 50 * 1024;    //以50KB为一个分片
         let shardSize = 20 * 1024 *1024;
         let shardIndex = 1;		//分片索引，1表示第1个分片
-        let start = shardIndex * shardIndex;
+        let start = (shardIndex - 1) * shardIndex;
         let end = Math.min(file.size, start + shardSize);
         let fileShard = file.slice(start, end);
 
