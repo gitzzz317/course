@@ -65,8 +65,19 @@
         let end = Math.min(file.size, start + shardSize);
         let fileShard = file.slice(start, end);
 
+        let size = file.size;
+        let shardTotal = Math.ceil(size / shardSize);
+
         // key："file"必须和后端controller参数名一致
-        formData.append('file', fileShard);
+        formData.append('shard', fileShard);
+        formData.append('shardIndex', shardIndex);
+        formData.append('shardSize', shardSize);
+        formData.append('shardTotal', shardTotal);
+        formData.append('name', fileName);
+        formData.append('suffix', suffix);
+        formData.append('size', size);
+
+        // formData.append('file', fileShard);
         formData.append('use', _this.use);
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload', formData).then((response)=>{
