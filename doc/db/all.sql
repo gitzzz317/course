@@ -195,7 +195,7 @@ create table `user` (
   `password` char(32) not null comment '密码',
   primary key (`id`),
   unique key `login_name_unique` (`login_name`)
-) engine=innodb default charset=utf8mb4 comment='用户';
+) engine=innodb default charset=utf8 comment='用户';
 
 # 初始test/test
 insert into `user` (id, login_name, name, password) values ('10000000', 'test', '测试', 'e70e2222a9d67c4f2eae107533359aa4');
