@@ -42,7 +42,7 @@ public class UserService {
      */
     public void save(UserDto userDto) {
         User user = CopyUtil.copy(userDto, User.class);
-        if (StringUtils.isEmpty(userDto.getId())) {
+        if (!StringUtils.hasText(userDto.getId())) {
             this.insert(user);
         } else {
             this.update(user);
@@ -65,7 +65,8 @@ public class UserService {
      * 更新
      */
     private void update(User user) {
-        userMapper.updateByPrimaryKey(user);
+        user.setPassword(null);
+        userMapper.updateByPrimaryKeySelective(user);
     }
 
     /**
@@ -89,6 +90,17 @@ public class UserService {
         } else {
             return userList.get(0);
         }
+    }
+
+    /**
+     * 重置密码
+     * @param userDto
+     */
+    public void savePassword(UserDto userDto) {
+        User user = new User();
+        user.setId(userDto.getId());
+        user.setPassword(userDto.getPassword());
+        userMapper.updateByPrimaryKeySelective(user);
     }
 
 }
