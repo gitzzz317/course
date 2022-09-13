@@ -397,7 +397,7 @@
                         </ul>
                     </li>
 
-                    <li class="active open">
+                    <li class="">
                         <a href="" class="dropdown-toggle">
 
                             <i class="menu-icon fa fa-list"></i>
@@ -433,7 +433,7 @@
                         </ul>
                     </li>
 
-                    <li class="active open">
+                    <li class="">
                         <a href="" class="dropdown-toggle">
 
                             <i class="menu-icon fa fa-list"></i>
