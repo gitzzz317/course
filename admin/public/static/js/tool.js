@@ -84,20 +84,20 @@ Tool = {
     } while (number);
     return arr.join('');
   },
-//
-//   /**
-//    * 保存登录用户信息
-//    */
-//   setLoginUser: function (loginUser) {
-//     SessionStorage.set(SESSION_KEY_LOGIN_USER, loginUser);
-//   },
-//
-//   /**
-//    * 获取登录用户信息
-//    */
-//   getLoginUser: function () {
-//     return SessionStorage.get(SESSION_KEY_LOGIN_USER) || {};
-//   },
+
+  /**
+   * 保存登录用户信息
+   */
+  setLoginUser: function (loginUser) {
+    SessionStorage.set(SESSION_KEY_LOGIN_USER, loginUser);
+  },
+
+  /**
+   * 获取登录用户信息
+   */
+  getLoginUser: function () {
+    return SessionStorage.get(SESSION_KEY_LOGIN_USER) || {};
+  },
 //
 //   /**
 //    * 随机生成[len]长度的[radix]进制数
