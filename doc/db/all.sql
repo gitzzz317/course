@@ -227,7 +227,7 @@ create table `role` (
   `name` varchar(50) not null comment '角色',
   `desc` varchar(100) not null comment '描述',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='角色';
+) engine=innodb default charset=utf8 comment='角色';
 
 insert into `role` values ('00000000', '系统管理员', '管理用户、角色权限');
 insert into `role` values ('00000001', '开发', '维护资源');
