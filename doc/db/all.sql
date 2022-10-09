@@ -209,7 +209,7 @@ create table `resource` (
   `request` varchar(200) null comment '请求|接口',
   `parent` char(6) comment '父id',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='资源';
+) engine=innodb default charset=utf8 comment='资源';
 
 insert into `resource` values ('01', '系统管理', null, null, null);
 insert into `resource` values ('0101', '用户管理', '/system/user', null, '01');
