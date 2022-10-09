@@ -239,7 +239,7 @@ create table `role_resource` (
   `role_id` char(8) not null comment '角色|id',
   `resource_id` char(6) not null comment '资源|id',
   primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='角色资源关联';
+) engine=innodb default charset=utf8 comment='角色资源关联';
 
 insert into `role_resource` values ('00000000', '00000000', '01');
 insert into `role_resource` values ('00000001', '00000000', '0101');
