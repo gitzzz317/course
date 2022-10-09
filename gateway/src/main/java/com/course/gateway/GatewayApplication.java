@@ -13,6 +13,8 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.util.pattern.PathPatternParser;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 @EnableEurekaClient
 public class GatewayApplication {
@@ -36,9 +38,17 @@ public class GatewayApplication {
         @Bean
         public CorsWebFilter corsFilter() {
             CorsConfiguration config = new CorsConfiguration();
+
+
+            config.setAllowCredentials(Boolean.TRUE);
             config.addAllowedMethod("*");
-            config.addAllowedOrigin("*");
+//            config.addAllowedOrigin("http://localhost:8080");
+//            config.addAllowedOrigin("*");
+            ArrayList<String> list = new ArrayList<>();
+            list.add("*");
+            config.setAllowedOriginPatterns(list);
             config.addAllowedHeader("*");
+            config.setMaxAge(3600L);
 
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
             source.registerCorsConfiguration("/**", config);
